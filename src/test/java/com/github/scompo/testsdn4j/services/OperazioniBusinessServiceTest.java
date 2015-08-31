@@ -15,6 +15,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.github.scompo.testsdn4j.PersistenceContextTest;
 import com.github.scompo.testsdn4j.domain.Operazione;
+import com.github.scompo.testsdn4j.domain.Prerequisito;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @PersistenceContextTest
@@ -61,7 +62,7 @@ public class OperazioniBusinessServiceTest {
 		op1 = operazioniService.getById(FIRST_MUTAZIONE);
 		op2 = operazioniService.getById(SECOND_MUTAZIONE);
 
-		op1.getPrerequisiti().add(op2);
+		op1.getPrerequisiti().add(new Prerequisito(op2, op1));
 
 		operazioniService.save(op1);
 
@@ -70,7 +71,7 @@ public class OperazioniBusinessServiceTest {
 
 		assertNotNull(res1.getPrerequisiti());
 		assertEquals(1, res1.getPrerequisiti().size());
-		assertEquals(SECOND_MUTAZIONE, getOnlyElement(res1.getPrerequisiti()).getMutazioneId().longValue());
+		assertEquals(SECOND_MUTAZIONE, getOnlyElement(res1.getPrerequisiti()).getPadre().getMutazioneId().longValue());
 
 		assertNotNull(res2.getPrerequisiti());
 		assertTrue("prerequisiti should be empty on second mutazione", res2.getPrerequisiti().isEmpty());
