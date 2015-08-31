@@ -1,4 +1,4 @@
-package com.github.scompo.testsdn4j.services;
+package com.github.scompo.testsdn4j.repositories;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -14,26 +14,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.github.scompo.testsdn4j.PersistenceContextTest;
-import com.github.scompo.testsdn4j.domain.Operazione;
+import com.github.scompo.testsdn4j.domain.OperazioneMacroOne;
 import com.github.scompo.testsdn4j.domain.Prerequisito;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @PersistenceContextTest
-public class OperazioniBusinessServiceTest {
+public class OperazioneMacroOneRepositoryTest {
 
 	private static final long FIRST_MUTAZIONE = 1L;
 
 	private static final long SECOND_MUTAZIONE = 2L;
 
 	@Autowired
-	private OperazioniService operazioniService;
+	private OperazioneMacroOneRepository macroOneRepository;
 
 	@Test
 	public void shouldCreateAnOperazione() {
 
-		Operazione testOperazione = new Operazione(FIRST_MUTAZIONE);
+		OperazioneMacroOne testOperazione = new OperazioneMacroOne(FIRST_MUTAZIONE);
 
-		Operazione res = operazioniService.save(testOperazione);
+		OperazioneMacroOne res = macroOneRepository.save(testOperazione);
 
 		assertNotNull(res);
 		assertNotNull(res.getId());
@@ -43,25 +43,25 @@ public class OperazioniBusinessServiceTest {
 	@Test
 	public void shouldAddAPrerequisito() {
 
-		Operazione testOperazione1 = new Operazione(FIRST_MUTAZIONE);
+		OperazioneMacroOne testOperazione1 = new OperazioneMacroOne(FIRST_MUTAZIONE);
 
-		Operazione testOperazione2 = new Operazione(SECOND_MUTAZIONE);
+		OperazioneMacroOne testOperazione2 = new OperazioneMacroOne(SECOND_MUTAZIONE);
 
-		operazioniService.save(testOperazione1);
-		operazioniService.save(testOperazione2);
+		macroOneRepository.save(testOperazione1);
+		macroOneRepository.save(testOperazione2);
 
-		Operazione op1 = null;
-		Operazione op2 = null;
+		OperazioneMacroOne op1 = null;
+		OperazioneMacroOne op2 = null;
 
-		op1 = operazioniService.getByMutazioneId(FIRST_MUTAZIONE);
-		op2 = operazioniService.getByMutazioneId(SECOND_MUTAZIONE);
+		op1 = macroOneRepository.findByMutazioneId(FIRST_MUTAZIONE);
+		op2 = macroOneRepository.findByMutazioneId(SECOND_MUTAZIONE);
 
 		op1.getPrerequisiti().add(new Prerequisito(op2, op1));
 
-		operazioniService.save(op1);
+		macroOneRepository.save(op1);
 
-		Operazione res1 = operazioniService.getByMutazioneId(FIRST_MUTAZIONE);
-		Operazione res2 = operazioniService.getByMutazioneId(SECOND_MUTAZIONE);
+		OperazioneMacroOne res1 = macroOneRepository.findByMutazioneId(FIRST_MUTAZIONE);
+		OperazioneMacroOne res2 = macroOneRepository.findByMutazioneId(SECOND_MUTAZIONE);
 
 		assertNotNull(res1.getPrerequisiti());
 		assertEquals(1, res1.getPrerequisiti().size());

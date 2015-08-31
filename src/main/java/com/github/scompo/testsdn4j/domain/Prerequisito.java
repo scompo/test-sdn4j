@@ -12,17 +12,17 @@ public class Prerequisito {
 	private Long id;
 
 	@StartNode
-	private Operazione padre;
+	private OperazioneMacroOne padre;
 
 	@EndNode
-	private Operazione figlio;
+	private OperazioneMacroOne figlio;
 
 	public Prerequisito() {
 
 		this(null, null);
 	}
 
-	public Prerequisito(Operazione padre, Operazione figlio) {
+	public Prerequisito(OperazioneMacroOne padre, OperazioneMacroOne figlio) {
 		this.padre = padre;
 		this.figlio = figlio;
 	}
@@ -35,19 +35,19 @@ public class Prerequisito {
 		this.id = id;
 	}
 
-	public Operazione getPadre() {
+	public OperazioneMacroOne getPadre() {
 		return padre;
 	}
 
-	public void setPadre(Operazione padre) {
+	public void setPadre(OperazioneMacroOne padre) {
 		this.padre = padre;
 	}
 
-	public Operazione getFiglio() {
+	public OperazioneMacroOne getFiglio() {
 		return figlio;
 	}
 
-	public void setFiglio(Operazione figlio) {
+	public void setFiglio(OperazioneMacroOne figlio) {
 		this.figlio = figlio;
 	}
 
