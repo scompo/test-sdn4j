@@ -39,6 +39,20 @@ public class OperazioneMacroOneRepositoryTest {
 		assertNotNull(res.getId());
 		assertEquals(FIRST_MUTAZIONE, res.getMutazioneId().longValue());
 	}
+	
+	@Test
+	public void findByMutazioneIdTest() {
+
+		OperazioneMacroOne testOperazione = new OperazioneMacroOne(FIRST_MUTAZIONE);
+
+		macroOneRepository.save(testOperazione);
+		
+		OperazioneMacroOne res = macroOneRepository.findByMutazioneId(FIRST_MUTAZIONE);
+
+		assertNotNull(res);
+		assertNotNull(res.getId());
+		assertEquals(FIRST_MUTAZIONE, res.getMutazioneId().longValue());
+	}
 
 	@Test
 	public void shouldAddAPrerequisito() {
