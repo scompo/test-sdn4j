@@ -5,6 +5,7 @@ import java.util.HashSet;
 
 import org.neo4j.ogm.annotation.GraphId;
 import org.neo4j.ogm.annotation.NodeEntity;
+import org.neo4j.ogm.annotation.Relationship;
 
 @NodeEntity
 public class Operazione {
@@ -14,6 +15,7 @@ public class Operazione {
 	
 	private Long mutazioneId;
 	
+	@Relationship(type = "PREREQUISITO", direction = Relationship.INCOMING)
 	private Collection<Operazione> prerequisiti = new HashSet<Operazione>();
 	
 	public Operazione() {
