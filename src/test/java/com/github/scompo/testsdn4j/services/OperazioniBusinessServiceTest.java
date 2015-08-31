@@ -10,7 +10,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.github.scompo.testsdn4j.PersistenceContextTest;
 import com.github.scompo.testsdn4j.domain.Operazione;
-import com.github.scompo.testsdn4j.repositories.OperazioniRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @PersistenceContextTest
@@ -19,7 +18,7 @@ public class OperazioniBusinessServiceTest {
 	private static final long FIRST_MUTAZIONE = 1L;
 	
 	@Autowired
-	private OperazioniRepository operazioniRepository;
+	private OperazioniService operazioniService;
 
 	@Test
 	public void shouldCreateAnOperazione(){
@@ -28,7 +27,7 @@ public class OperazioniBusinessServiceTest {
 		
 		testOperazione.setMutazioneId(FIRST_MUTAZIONE);
 		
-		Operazione res = operazioniRepository.save(testOperazione);
+		Operazione res = operazioniService.save(testOperazione);
 		
 		assertNotNull(res);
 		assertNotNull(res.getId());

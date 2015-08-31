@@ -1,6 +1,7 @@
 package com.github.scompo.testsdn4j;
 
 import org.neo4j.ogm.session.SessionFactory;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.neo4j.config.Neo4jConfiguration;
@@ -12,6 +13,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableNeo4jRepositories(basePackages = "com.github.scompo.testsdn4j.repositories")
 @EnableTransactionManagement
+@SpringBootApplication
 public class Neo4jConfigTest extends Neo4jConfiguration {
 
 	public Neo4jConfigTest() {
