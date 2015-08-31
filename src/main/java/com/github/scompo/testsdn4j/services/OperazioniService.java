@@ -8,4 +8,6 @@ public interface OperazioniService {
 
 	Operazione getById(Long id);
 
+	Operazione getByMutazioneId(Long idPadre);
+
 }

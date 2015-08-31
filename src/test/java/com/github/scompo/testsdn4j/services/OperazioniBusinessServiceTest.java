@@ -31,9 +31,7 @@ public class OperazioniBusinessServiceTest {
 	@Test
 	public void shouldCreateAnOperazione() {
 
-		Operazione testOperazione = new Operazione();
-
-		testOperazione.setMutazioneId(FIRST_MUTAZIONE);
+		Operazione testOperazione = new Operazione(FIRST_MUTAZIONE);
 
 		Operazione res = operazioniService.save(testOperazione);
 
@@ -45,13 +43,9 @@ public class OperazioniBusinessServiceTest {
 	@Test
 	public void shouldAddAPrerequisito() {
 
-		Operazione testOperazione1 = new Operazione();
+		Operazione testOperazione1 = new Operazione(FIRST_MUTAZIONE);
 
-		testOperazione1.setMutazioneId(FIRST_MUTAZIONE);
-
-		Operazione testOperazione2 = new Operazione();
-
-		testOperazione2.setMutazioneId(SECOND_MUTAZIONE);
+		Operazione testOperazione2 = new Operazione(SECOND_MUTAZIONE);
 
 		operazioniService.save(testOperazione1);
 		operazioniService.save(testOperazione2);
@@ -59,15 +53,15 @@ public class OperazioniBusinessServiceTest {
 		Operazione op1 = null;
 		Operazione op2 = null;
 
-		op1 = operazioniService.getById(FIRST_MUTAZIONE);
-		op2 = operazioniService.getById(SECOND_MUTAZIONE);
+		op1 = operazioniService.getByMutazioneId(FIRST_MUTAZIONE);
+		op2 = operazioniService.getByMutazioneId(SECOND_MUTAZIONE);
 
 		op1.getPrerequisiti().add(new Prerequisito(op2, op1));
 
 		operazioniService.save(op1);
 
-		Operazione res1 = operazioniService.getById(FIRST_MUTAZIONE);
-		Operazione res2 = operazioniService.getById(SECOND_MUTAZIONE);
+		Operazione res1 = operazioniService.getByMutazioneId(FIRST_MUTAZIONE);
+		Operazione res2 = operazioniService.getByMutazioneId(SECOND_MUTAZIONE);
 
 		assertNotNull(res1.getPrerequisiti());
 		assertEquals(1, res1.getPrerequisiti().size());

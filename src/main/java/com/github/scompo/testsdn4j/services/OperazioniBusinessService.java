@@ -25,4 +25,10 @@ public class OperazioniBusinessService implements OperazioniService {
 		
 		return operazioniRepository.findOne(id);
 	}
+
+	@Override
+	public Operazione getByMutazioneId(Long idPadre) {
+		
+		return operazioniRepository.findByMutazioneId(idPadre);
+	}
 }

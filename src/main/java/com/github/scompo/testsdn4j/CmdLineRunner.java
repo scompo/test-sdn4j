@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -17,6 +19,8 @@ import com.github.scompo.testsdn4j.services.OperazioniService;
 
 @Component
 public class CmdLineRunner implements CommandLineRunner {
+	
+	private static final Logger logger = LoggerFactory.getLogger(CmdLineRunner.class);
 
 	private Map<Long, Collection<Long>> data = new HashMap<Long, Collection<Long>>();
 
@@ -41,13 +45,13 @@ public class CmdLineRunner implements CommandLineRunner {
 
 			Long idPadre = entry.getKey();
 
-			Operazione padre = operazioniService.getById(idPadre);
+			Operazione padre = operazioniService.getByMutazioneId(idPadre);
 
-			Collection<Long> figli = entry.getValue();
+			Collection<Long> figliId = entry.getValue();
 
-			for (Long figlioId : figli) {
+			for (Long figlioId : figliId) {
 
-				Operazione figlio = operazioniService.getById(figlioId);
+				Operazione figlio = operazioniService.getByMutazioneId(figlioId);
 
 				figlio.getPrerequisiti().add(new Prerequisito(padre, figlio));
 				operazioniService.save(figlio);

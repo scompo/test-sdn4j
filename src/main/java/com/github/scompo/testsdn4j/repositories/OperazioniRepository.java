@@ -6,4 +6,6 @@ import com.github.scompo.testsdn4j.domain.Operazione;
 
 public interface OperazioniRepository extends GraphRepository<Operazione> {
 
+	Operazione findByMutazioneId(Long mutazioneId);
+
 }
