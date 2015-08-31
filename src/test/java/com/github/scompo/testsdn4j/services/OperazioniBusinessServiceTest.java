@@ -73,7 +73,7 @@ public class OperazioniBusinessServiceTest {
 		assertEquals(SECOND_MUTAZIONE, getOnlyElement(res1.getPrerequisiti()).getMutazioneId().longValue());
 
 		assertNotNull(res2.getPrerequisiti());
-		assertTrue(res2.getPrerequisiti().isEmpty());
+		assertTrue("prerequisiti should be empty on second mutazione", res2.getPrerequisiti().isEmpty());
 	}
 
 	public static <T> T getOnlyElement(Collection<T> collection) {
