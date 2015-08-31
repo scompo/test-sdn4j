@@ -14,10 +14,17 @@ public class Operazione {
 	
 	private Long mutazioneId;
 	
-	private Collection<Prerequisito> prerequisiti = new HashSet<Prerequisito>();
+	private Collection<Prerequisito> prerequisiti;
 	
 	public Operazione() {
 		
+		this(null);
+	}
+	
+	public Operazione(Long mutazioneId) {
+		
+		this.mutazioneId = mutazioneId;
+		prerequisiti = new HashSet<Prerequisito>();
 	}
 
 	public Long getId() {
