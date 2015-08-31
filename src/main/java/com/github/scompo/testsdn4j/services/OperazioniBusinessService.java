@@ -9,15 +9,15 @@ import com.github.scompo.testsdn4j.repositories.OperazioniRepository;
 
 @Service
 @Transactional
-public class OperazioniBusinessService implements OperazioniService{
+public class OperazioniBusinessService implements OperazioniService {
 
 	@Autowired
 	private OperazioniRepository operazioniRepository;
 
 	@Override
 	public Operazione save(Operazione testOperazione) {
-		
-		return null;
+
+		return operazioniRepository.save(testOperazione);
 	}
 
 }
