@@ -1,5 +1,8 @@
 package com.github.scompo.testsdn4j.domain;
 
+import java.util.Collection;
+import java.util.HashSet;
+
 import org.neo4j.ogm.annotation.GraphId;
 import org.neo4j.ogm.annotation.NodeEntity;
 
@@ -10,6 +13,8 @@ public class Operazione {
 	private Long id;
 	
 	private Long mutazioneId;
+	
+	private Collection<Operazione> prerequisiti = new HashSet<Operazione>();
 	
 	public Operazione() {
 		
@@ -31,8 +36,16 @@ public class Operazione {
 		this.mutazioneId = mutazioneId;
 	}
 
+	public Collection<Operazione> getPrerequisiti() {
+		return prerequisiti;
+	}
+
+	public void setPrerequisiti(Collection<Operazione> prerequisiti) {
+		this.prerequisiti = prerequisiti;
+	}
+
 	@Override
 	public String toString() {
-		return "Operazione [id=" + id + ", mutazioneId=" + mutazioneId + "]";
+		return "Operazione [id=" + id + ", mutazioneId=" + mutazioneId + ", prerequisiti=" + prerequisiti + "]";
 	}
 }

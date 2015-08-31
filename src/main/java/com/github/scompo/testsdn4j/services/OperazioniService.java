@@ -6,4 +6,6 @@ public interface OperazioniService {
 
 	Operazione save(Operazione testOperazione);
 
+	Operazione getById(Long id);
+
 }

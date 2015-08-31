@@ -20,4 +20,9 @@ public class OperazioniBusinessService implements OperazioniService {
 		return operazioniRepository.save(testOperazione);
 	}
 
+	@Override
+	public Operazione getById(Long id){
+		
+		return operazioniRepository.findOne(id);
+	}
 }
