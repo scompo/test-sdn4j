@@ -30,12 +30,12 @@
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-neo4j</artifactId>
-			<version>4.0.0.RC2</version>
+			<version>4.0.0.RC2</version><!--$NO-MVN-MAN-VER$-->
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-neo4j</artifactId>
-			<version>4.0.0.RC2</version>
+			<version>4.0.0.RC2</version><!--$NO-MVN-MAN-VER$-->
 			<type>test-jar</type>
 			<scope>test</scope>
 		</dependency>
@@ -51,6 +51,10 @@
 			<artifactId>neo4j-harness</artifactId>
 			<version>2.2.4</version>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-batch</artifactId>
 		</dependency>
 	</dependencies>
 
