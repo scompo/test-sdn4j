@@ -1,62 +1,25 @@
 package com.github.scompo.testsdn4j;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Map.Entry;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import com.github.scompo.testsdn4j.domain.Operazione;
-import com.github.scompo.testsdn4j.domain.Prerequisito;
-import com.github.scompo.testsdn4j.services.OperazioniService;
+import com.github.scompo.testsdn4j.repositories.OperazioneMacroOneRepository;
 
 @Component
 public class CmdLineRunner implements CommandLineRunner {
 	
 	private static final Logger logger = LoggerFactory.getLogger(CmdLineRunner.class);
 
-	private Map<Long, Collection<Long>> data = new HashMap<Long, Collection<Long>>();
-
 	@Autowired
-	private OperazioniService operazioniService;
+	private OperazioneMacroOneRepository operazioneMacroOneRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
-
-		data.put(1L, Arrays.asList(2L));
-		data.put(2L, Arrays.asList(3L, 4L));
-		data.put(3L, Collections.emptyList());
-		data.put(4L, Arrays.asList(5L));
-		data.put(5L, Collections.emptyList());
-
-		for (Long id : data.keySet()) {
-
-			operazioniService.save(new Operazione(id));
-		}
-
-		for (Entry<Long, Collection<Long>> entry : data.entrySet()) {
-
-			Long idPadre = entry.getKey();
-
-			Operazione padre = operazioniService.getByMutazioneId(idPadre);
-
-			Collection<Long> figliId = entry.getValue();
-
-			for (Long figlioId : figliId) {
-
-				Operazione figlio = operazioniService.getByMutazioneId(figlioId);
-
-				figlio.getPrerequisiti().add(new Prerequisito(padre, figlio));
-				operazioniService.save(figlio);
-			}
-		}
+		
+		logger.info("running!");
 	}
 
 }
