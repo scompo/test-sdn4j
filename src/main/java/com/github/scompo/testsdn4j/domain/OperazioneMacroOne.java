@@ -6,7 +6,7 @@ import java.util.HashSet;
 import org.neo4j.ogm.annotation.NodeEntity;
 
 @NodeEntity
-public class OperazioneMacroOne extends AbstractNodeEntity {
+public class OperazioneMacroOne extends AbstractEseguibileNodeEntity {
 
 	private Long mutazioneId;
 

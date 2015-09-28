@@ -7,10 +7,10 @@
            http://www.springframework.org/schema/batch/spring-batch-2.2.xsd">
 
 	<job id="importJob">
-		<flow parent="importJobFlow" id="importJob.importJobFlow" />
+		<flow parent="importFlow" id="importJob.importFlow" />
 	</job>
 
-	<flow id="importJobFlow">
+	<flow id="importFlow">
 		<step id="importOperazioneOneStep" next="createMacroOperazioneOneStep">
 			<tasklet ref="importOperazioneOneTasklet" />
 		</step>

@@ -1,0 +1,27 @@
+<beans:beans xmlns="http://www.springframework.org/schema/batch"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/batch
+           http://www.springframework.org/schema/batch/spring-batch-2.2.xsd">
+
+	<job id="clearJob">
+		<flow parent="clearFlow" id="clearJob.clearFlow" />
+	</job>
+
+	<flow id="clearFlow">
+		<step id="clearStep">
+			<tasklet ref="clearTasklet" />
+		</step>
+	</flow>
+
+	<beans:bean id="clearTasklet"
+		class="com.github.scompo.testsdn4j.batch.tasklets.ClearTasklet"
+		scope="step">
+		<beans:property name="operazioneMacroOneRepository"
+			ref="operazioneMacroOneRepository" />
+		<beans:property name="operazioneOneRepository" ref="operazioneOneRepository" />
+	</beans:bean>
+
+</beans:beans>

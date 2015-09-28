@@ -1,0 +1,14 @@
+<beans:beans xmlns="http://www.springframework.org/schema/batch"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/batch
+           http://www.springframework.org/schema/batch/spring-batch-2.2.xsd">
+
+	<job id="fullJob">
+		<flow parent="clearFlow" id="fullJob.clearFlow" next="fullJob.importFlow" />
+		<flow parent="importFlow" id="fullJob.importFlow" next="fullJob.executeFlow" />
+		<flow parent="executeFlow" id="fullJob.executeFlow" />
+	</job>
+</beans:beans>

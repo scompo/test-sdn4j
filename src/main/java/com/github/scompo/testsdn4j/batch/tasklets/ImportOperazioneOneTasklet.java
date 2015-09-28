@@ -25,6 +25,7 @@ public class ImportOperazioneOneTasklet implements Tasklet {
 		OperazioneOne op3 = null;
 		OperazioneOne op4 = null;
 		OperazioneOne op5 = null;
+		OperazioneOne op6 = null;
 		
 		op1 = new OperazioneOne();
 		op1.setData("data1");
@@ -50,12 +51,18 @@ public class ImportOperazioneOneTasklet implements Tasklet {
 		op5.setData("data5");        
 		op5.setIdMutazioneStart(3L); 
 		op5.setIdMutazioneEnd(null);
+		
+		op6 = new OperazioneOne();   
+		op6.setData("data6");        
+		op6.setIdMutazioneStart(4L); 
+		op6.setIdMutazioneEnd(null);
 
 		entities.add(op1);
 		entities.add(op2);
 		entities.add(op3);
 		entities.add(op4);
 		entities.add(op5);
+		entities.add(op6);
 		
 		operazioneOneRepository.save(entities);
 		

@@ -3,7 +3,7 @@ package com.github.scompo.testsdn4j.domain;
 import org.neo4j.ogm.annotation.NodeEntity;
 
 @NodeEntity
-public class OperazioneOne extends AbstractNodeEntity {
+public class OperazioneOne extends AbstractEseguibileNodeEntity {
 
 	private String data;
 
