@@ -1,30 +1,18 @@
 package com.github.scompo.testsdn4j.domain;
 
-import org.neo4j.ogm.annotation.GraphId;
 import org.neo4j.ogm.annotation.NodeEntity;
 
 @NodeEntity
-public class OperazioneOne {
+public class OperazioneOne extends AbstractNodeEntity {
 
-	@GraphId
-	private Long id;
-	
 	private String data;
-	
+
 	private Long idMutazioneStart;
-	
+
 	private Long idMutazioneEnd;
-	
-	public OperazioneOne(){
-		
-	}
 
-	public Long getId() {
-		return id;
-	}
+	public OperazioneOne() {
 
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public String getData() {
@@ -53,7 +41,7 @@ public class OperazioneOne {
 
 	@Override
 	public String toString() {
-		return "OperazioneOne [id=" + id + ", data=" + data + ", idMutazioneStart=" + idMutazioneStart
-				+ ", idMutazioneEnd=" + idMutazioneEnd + "]";
+		return "OperazioneOne [data=" + data + ", idMutazioneStart=" + idMutazioneStart + ", idMutazioneEnd="
+				+ idMutazioneEnd + "]";
 	}
 }

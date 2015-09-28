@@ -1,11 +1,13 @@
 package com.github.scompo.testsdn4j.domain;
 
 import org.neo4j.ogm.annotation.EndNode;
-import org.neo4j.ogm.annotation.NodeEntity;
+import org.neo4j.ogm.annotation.RelationshipEntity;
 import org.neo4j.ogm.annotation.StartNode;
 
-@NodeEntity
+@RelationshipEntity(type = SottoMutazioneOne.NAME)
 public class SottoMutazioneOne extends AbstractNodeEntity {
+
+	public static final String NAME = "SOTTOMUTAZIONE";
 
 	@StartNode
 	private OperazioneMacroOne macroOp;
@@ -36,6 +38,7 @@ public class SottoMutazioneOne extends AbstractNodeEntity {
 
 	@Override
 	public String toString() {
-		return "SottoMutazioneOne [macroOp=" + macroOp + ", subOp=" + subOp + "]";
+		return "SottoMutazioneOne [macroOp=" + (macroOp != null ? macroOp.getId() : "null") + ", subOp="
+				+ (subOp != null ? subOp.getId() : "null") + "]";
 	}
 }

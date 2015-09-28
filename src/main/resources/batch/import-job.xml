@@ -11,15 +11,48 @@
 	</job>
 
 	<flow id="importJobFlow">
-		<step id="importOperazioneOne" next="createMacroOperazioneOne">
-			<tasklet ref="emptyPlaceholderTasklet" />
+		<step id="importOperazioneOneStep" next="createMacroOperazioneOneStep">
+			<tasklet ref="importOperazioneOneTasklet" />
 		</step>
-		<step id="createMacroOperazioneOne" next="linkMacroOperazioneOne">
-			<tasklet ref="emptyPlaceholderTasklet" />
+		<step id="createMacroOperazioneOneStep" next="linkMacroOperazioneOneStep">
+			<tasklet ref="createMacroOperazioneOneTasklet" />
 		</step>
-		<step id="linkMacroOperazioneOne">
-			<tasklet ref="emptyPlaceholderTasklet" />
+		<step id="linkMacroOperazioneOneStep" next="linkOperazioneOneToMacroOperazioneOneStep">
+			<tasklet ref="linkMacroOperazioneOneTasklet" />
+		</step>
+		<step id="linkOperazioneOneToMacroOperazioneOneStep">
+			<tasklet ref="linkOperazioneOneToMacroOperazioneOneTasklet" />
 		</step>
 	</flow>
+
+	<beans:bean id="importOperazioneOneTasklet"
+		class="com.github.scompo.testsdn4j.batch.tasklets.ImportOperazioneOneTasklet"
+		scope="step">
+		<beans:property name="operazioneOneRepository" ref="operazioneOneRepository" />
+	</beans:bean>
+
+	<beans:bean id="createMacroOperazioneOneTasklet"
+		class="com.github.scompo.testsdn4j.batch.tasklets.CreateMacroOperazioneOneTasklet"
+		scope="step">
+		<beans:property name="operazioneMacroOneRepository"
+			ref="operazioneMacroOneRepository" />
+		<beans:property name="operazioneOneRepository" ref="operazioneOneRepository" />
+	</beans:bean>
+
+	<beans:bean id="linkMacroOperazioneOneTasklet"
+		class="com.github.scompo.testsdn4j.batch.tasklets.LinkMacroOperazioneOneTasklet"
+		scope="step">
+		<beans:property name="operazioneMacroOneRepository"
+			ref="operazioneMacroOneRepository" />
+		<beans:property name="operazioneOneRepository" ref="operazioneOneRepository" />
+	</beans:bean>
+	
+	<beans:bean id="linkOperazioneOneToMacroOperazioneOneTasklet"
+		class="com.github.scompo.testsdn4j.batch.tasklets.LinkOperazioneOneToMacroOperazioneOneTasklet"
+		scope="step">
+		<beans:property name="operazioneMacroOneRepository"
+			ref="operazioneMacroOneRepository" />
+		<beans:property name="operazioneOneRepository" ref="operazioneOneRepository" />
+	</beans:bean>
 
 </beans:beans>

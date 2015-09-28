@@ -1,15 +1,13 @@
 package com.github.scompo.testsdn4j.domain;
 
 import org.neo4j.ogm.annotation.EndNode;
-import org.neo4j.ogm.annotation.GraphId;
 import org.neo4j.ogm.annotation.RelationshipEntity;
 import org.neo4j.ogm.annotation.StartNode;
 
-@RelationshipEntity(type = "PREREQUISITO")
-public class Prerequisito {
+@RelationshipEntity(type = Prerequisito.NAME)
+public class Prerequisito extends AbstractNodeEntity{
 
-	@GraphId
-	private Long id;
+	public static final String NAME = "PREREQUISITO";
 
 	@StartNode
 	private OperazioneMacroOne padre;
@@ -25,14 +23,6 @@ public class Prerequisito {
 	public Prerequisito(OperazioneMacroOne padre, OperazioneMacroOne figlio) {
 		this.padre = padre;
 		this.figlio = figlio;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public OperazioneMacroOne getPadre() {
@@ -53,7 +43,7 @@ public class Prerequisito {
 
 	@Override
 	public String toString() {
-		return "Prerequisito [id=" + id + ", padre=" + (padre != null ? padre.getMutazioneId() : "null") + ", figlio="
+		return "Prerequisito [padre=" + (padre != null ? padre.getMutazioneId() : "null") + ", figlio="
 				+ (figlio != null ? figlio.getMutazioneId() : "null") + "]";
 	}
 }
