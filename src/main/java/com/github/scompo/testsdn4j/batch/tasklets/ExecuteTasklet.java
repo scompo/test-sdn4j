@@ -32,11 +32,11 @@ public class ExecuteTasklet implements Tasklet {
 
 		populateStack(op);
 
-		System.err.println(execStack);
-
 		while (!execStack.isEmpty()) {
 
 			OperazioneMacroOne todo = execStack.pop();
+			
+			System.err.println(todo.getMutazioneId());
 
 			Collection<SottoMutazioneOne> opChild = todo.getSottoMutazioni();
 
@@ -65,7 +65,7 @@ public class ExecuteTasklet implements Tasklet {
 
 	private void populateStack(OperazioneMacroOne tmp) {
 
-		if (tmp != null) {
+		if (tmp != null && !tmp.isEseguito()) {
 
 			execStack.push(tmp);
 
